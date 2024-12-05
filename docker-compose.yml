@@ -1,0 +1,14 @@
+volumes:
+  aoc_data:
+
+services:
+  aoc_slack:
+    build:
+      context: .
+      target: final
+    image: bhacaz/aoc_slack:latest
+    ports:
+      - "3000:80"
+    volumes:
+      - aoc_data:/rails/storage
+    env_file: .env
