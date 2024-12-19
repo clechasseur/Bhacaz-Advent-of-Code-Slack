@@ -61,4 +61,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   # require 'sidekiq/testing'
   # Sidekiq::Testing.inline!
+
+  # Added for Render deployment
+  config.hosts << "advent-of-code-slack.onrender.com"
 end
