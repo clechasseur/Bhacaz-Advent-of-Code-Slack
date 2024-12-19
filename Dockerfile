@@ -11,7 +11,7 @@ WORKDIR /rails
 ENV RAILS_ENV="development" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development" \
+#    BUNDLE_WITHOUT="development" \
     RUBY_YJIT_ENABLE=1
 
 

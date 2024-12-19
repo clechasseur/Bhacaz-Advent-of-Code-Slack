@@ -1,34 +1,37 @@
 # version: '3.9'
 
-#networks:
-#  aoc_net:
-#    driver: bridge
+# networks:
+#   aoc_net:
+#     driver: bridge
 
 volumes:
   redis_data:
-#  aoc_data:
+  aoc_data:
 
 services:
   redis:
     image: redis:alpine
-      # networks:
-      # - aoc_net
+    # networks:
+    #   - aoc_net
     ports:
-      - "6379:6379"
+      - "6379"
     volumes:
       - redis_data:/data
 
-#  aoc_slack:
-#    build:
-#      context: .
-#      target: final
-#    image: bhacaz/aoc_slack:latest
-#    networks:
-#      - aoc_net
-#    ports:
-#      - "3333:3000"
-#    volumes:
-#      - aoc_data:/rails/storage
-#    env_file: .env
-#    environment:
-#      REDIS_URL: redis://redis:6379/1
+  aoc_slack:
+    build:
+      context: .
+      target: final
+    image: bhacaz/aoc_slack:latest
+    depends_on:
+      - redis
+    # networks:
+    #   - aoc_net
+    ports:
+      - "3000:3000"
+    volumes:
+      - aoc_data:/rails/storage
+    # env_file: .env
+    environment:
+      REDIS_URL: redis://redis:6379/1
+    command: bundle exec rails s -b '0.0.0.0'
