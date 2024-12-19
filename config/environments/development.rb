@@ -63,5 +63,5 @@ Rails.application.configure do
   # Sidekiq::Testing.inline!
 
   # Added for Render deployment
-  config.hosts << "advent-of-code-slack.onrender.com"
+  config.hosts << /[a-z0-9-.]+\.onrender\.com/
 end
